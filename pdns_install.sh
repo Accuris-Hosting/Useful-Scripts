@@ -82,7 +82,7 @@ wget http://mirror.softaculous.com/virtualizor/virtualizor.repo -O /etc/yum.repo
 #Install PowerDNS and MySQL and required packages
 #Set the MySQL root password
 ############################################################
-echo "2) Installing PDNS (4.1) and MySQL..."
+echo "2) Installing PDNS (Latest) and MySQL..."
 
 yum -y install epel-release yum-plugin-priorities >> $LOG 2>&1
 curl -o /etc/yum.repos.d/powerdns-auth-master.repo https://repo.powerdns.com/repo-files/centos-auth-master.repo >> $LOG 2>&1
@@ -202,7 +202,7 @@ sshpass -p $slavepass ssh -o StrictHostKeyChecking=no root@$slaveip "wget http:/
 #Install PowerDNS and MySQL and required packages
 #Set the MySQL root password
 ############################################################
-echo "9) Installing PDNS and MySQL..."
+echo "9) Installing PDNS (Latest) and MySQL..."
 
 sshpass -p $slavepass ssh root@$slaveip "yum -y install epel-release yum-plugin-priorities" >> $LOG 2>&1
 sshpass -p $slavepass ssh root@$slaveip "curl -o /etc/yum.repos.d/powerdns-auth-master.repo https://repo.powerdns.com/repo-files/centos-auth-master.repo" >> $LOG 2>&1
