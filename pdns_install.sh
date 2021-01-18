@@ -125,6 +125,9 @@ gmysql-dbname=powerdns'
 
 sed -i "$conf" /etc/pdns/pdns.conf
 
+chown pdns:root /etc/pdns/pdns.conf
+chmod 666 /etc/pdns/pdns.conf
+
 #Give permission for the MySQL user to connect from the Virtualizor master server
 ###################################################################
 echo "5) Setting permissions..."
@@ -247,6 +250,9 @@ gmysql-password='$pass'\
 gmysql-dbname=powerdns'
 
 sshpass -p $slavepass ssh root@$slaveip "sed -i '$conf' /etc/pdns/pdns.conf"
+
+sshpass -p $slavepass ssh root@$slaveip "chown pdns:root /etc/pdns/pdns.conf"
+sshpass -p $slavepass ssh root@$slaveip "chmod 666 /etc/pdns/pdns.conf"
 
 #Give permission for the MySQL user to connect from the Virtualizor master server
 ###################################################################
