@@ -64,7 +64,7 @@ for CONTAINER in $(/usr/local/bin/docker-compose -f "$COMPOSEDIR"/docker-compose
     docker stop "$CONTAINER" 1> /dev/null
     for VOLUME in ${VOLUMES[*]}; do
       echo " [ ] Backing up volume $VOLUME."
-      docker run -t --rm -v "$VOLUME":/"$VOLUME":ro -v "$LOCALDIR":/target registry.docker.as212934.net/backup:latest /bin/ash -c "cd /$VOLUME && tar czf - . | pv -t -r -b > /target/"$DATE"_"$VOLUME".tgz"
+      docker run -t --rm -v "$VOLUME":/"$VOLUME":ro -v "$LOCALDIR":/target registry.docker.as212934.net/backup:latest /bin/ash -c "cd /$VOLUME && tar -czf - . --xform s:'^./':: | pv -t -r -b > /target/"$DATE"_"$VOLUME".tgz"
       echo -ne "`tput cuu 2`\033[0J [x] Backed up volume $VOLUME.\n"
     done
     echo -e "${blue}Starting container $CONTAINER_NAME.${reset}\n"
