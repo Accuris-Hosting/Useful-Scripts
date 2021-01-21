@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# set terminal to dumb to allow tput to function
+TERM=dumb
+
 # exit if a command fails
 set -o errexit
 
