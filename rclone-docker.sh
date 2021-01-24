@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # set terminal to dumb to allow tput to function
-TERM=dumb
+#TERM=dumb
 
 # exit if a command fails
 set -o errexit
@@ -32,7 +32,7 @@ function cleanup {
   rm -rf "$LOCALDIR"
 
   # start all containers
-  COMPOSEDIR="/root/docker"
+  COMPOSEDIR="/home/sysadmin/docker"
   PROJECTNAME="docker"
   cd "$COMPOSEDIR" && /usr/local/bin/docker-compose -f "$COMPOSEDIR"/docker-compose.yml -p "$PROJECTNAME" start
 }
@@ -42,7 +42,7 @@ trap cleanup EXIT
 BACKUP1REMOTE="backup1:Backups/Internal/Docker/$HOSTNAME/$DATE"
 
 # set compose directory
-COMPOSEDIR="/root/docker"
+COMPOSEDIR="/home/sysadmin/docker"
 
 # echo a blank line to begin
 echo -e ""
@@ -50,10 +50,10 @@ echo -e ""
 # iterate through all containers, backing up any volumes
 for CONTAINER in $(/usr/local/bin/docker-compose -f "$COMPOSEDIR"/docker-compose.yml ps -q); do
   # store container name
-  CONTAINER_NAME="$(docker ps --filter "id=$CONTAINER" --format "{{.Names}}")"
+  CONTAINER_NAME="$(/usr/bin/docker ps --filter "id=$CONTAINER" --format "{{.Names}}")"
 
   # find all volume mounts
-  VOLUMES=($(docker inspect -f '{{ json .Mounts }}' $CONTAINER | jq '.[] | .Name' | grep -v "null" | grep "docker_" | grep -v "docker_traefik" | sed 's/"//g'))
+  VOLUMES=($(/usr/bin/docker inspect -f '{{ json .Mounts }}' $CONTAINER | jq '.[] | .Name' | grep -v "null" | grep "docker_" | grep -v "docker_traefik" | sed 's/"//g'))
 
   # count number of volume mounts
   VOLUME_COUNT=${#VOLUMES[@]}
@@ -64,19 +64,19 @@ for CONTAINER in $(/usr/local/bin/docker-compose -f "$COMPOSEDIR"/docker-compose
   # otherwise, stop the container and back up each mount
   else
     echo "${yellow}Stopping container $CONTAINER_NAME.${reset}"
-    docker stop "$CONTAINER" 1> /dev/null
+    /usr/bin/docker stop "$CONTAINER" 1> /dev/null
     for VOLUME in ${VOLUMES[*]}; do
       echo " [ ] Backing up volume $VOLUME."
-      docker run -t --rm -v "$VOLUME":/"$VOLUME":ro -v "$LOCALDIR":/target registry.docker.as212934.net/backup:latest /bin/ash -c "cd /$VOLUME && tar -czf - . --xform s:'^./':: | pv -t -r -b > /target/"$DATE"_"$VOLUME".tgz"
+      /usr/bin/docker run -t --rm -v "$VOLUME":/"$VOLUME":ro -v "$LOCALDIR":/target registry.docker.as212934.net/backup:latest /bin/ash -c "cd /$VOLUME && tar -czf - . --xform s:'^./':: | pv -t -r -b > /target/"$DATE"_"$VOLUME".tgz"
       echo -ne "`tput cuu 2`\033[0J [x] Backed up volume $VOLUME.\n"
     done
     echo -e "${blue}Starting container $CONTAINER_NAME.${reset}\n"
-    docker start "$CONTAINER" 1> /dev/null
+    /usr/bin/docker start "$CONTAINER" 1> /dev/null
   fi
 done
 
 # create backup directory on dropbox
-rclone mkdir "$BACKUP1REMOTE"
+/usr/bin/rclone mkdir "$BACKUP1REMOTE"
 
 # copy files over to dropbox
-rclone copy --verbose "$LOCALDIR" "$BACKUP1REMOTE"
+/usr/bin/rclone copy --verbose "$LOCALDIR" "$BACKUP1REMOTE"
