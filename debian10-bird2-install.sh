@@ -12,3 +12,4 @@ ${SUDO} apt-get update
 ${SUDO} apt-get -y install bird2
 ${SUDO} systemctl enable bird
 ${SUDO} systemctl start bird
+exit
