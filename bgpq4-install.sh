@@ -21,6 +21,7 @@ make
 echo "Compiling the software: Step 3/3 - Installing software"
 ${SUDO} make install
 echo "Deleting temp build directory"
+cd /tmp
 rm -rf /tmp/bgpq4/
-echo "bgpq4 installation complete!"
+echo "bgpq4 installation completed successfully!"
 exit
