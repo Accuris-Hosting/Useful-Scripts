@@ -18,6 +18,8 @@ echo "Building pathvector"
 go build
 echo "Copying pathvector executable for systenm-wide use"
 ${SUDO} cp $HOME/pathvector/pathvector /usr/local/sbin
+echo "Creating runtine configuration cache directory"
+${SUDO} mkdir -p /var/run/pathvector/cache/
 echo "Deleting temp build directory"
 cd $HOME/
 rm -rf $HOME/pathvector
