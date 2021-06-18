@@ -256,7 +256,7 @@ sshpass -p $slavepass ssh root@$slaveip "chmod 666 /etc/pdns/pdns.conf"
 
 #Give permission for the MySQL user to connect from the Virtualizor master server
 ###################################################################
-#NO NEED FOR THIS STEP AS VIRTUALIZOR DOESNT NEED TO ACESS THE SECONDARY NAMESERVER ONLY THE PRIMARY
+#NO NEED FOR THIS STEP AS VIRTUALIZOR DOESNT NEED TO ACCESS THE SECONDARY NAMESERVER ONLY THE PRIMARY
 
 
 #Start the PDNS Daemon
