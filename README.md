@@ -4,7 +4,7 @@ This repository was created as a source for all scripts developed and/or found u
 
 ## Scripts
 ### go-install.sh
-This script will download, extract and install v1.16.5 of the [Go](https://golang.org/) binary on linux-amd64 systems.
+This script will download, extract and install v1.16.5 of the [Go](https://golang.org/) binary onto a Linux system running the AMD64 kernel.
 
 ### debian10-bird2-install.sh
 This script will automatically configure the required package repository as well as install the [BIRD2](https://bird.network.cz/) BGP daemon onto a system running Debian 10 Buster.
