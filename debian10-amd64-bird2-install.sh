@@ -13,17 +13,17 @@ Package: bird*
 Pin: origin provo-mirror.opensuse.org
 Pin-Priority: 600
 EOF
-echo "Installing prerequisite packages"
+echo "Installing prerequisite packages..."
 ${SUDO} apt install -y gnupg2
-echo "Adding repo signing keys"
+echo "Adding repo signing keys..."
 ${SUDO} apt-key adv --fetch-keys 'https://download.opensuse.org/repositories/home:/CZ-NIC:/bird-latest/Debian_10/Release.key'
 echo "Updating system package cache..."
 ${SUDO} apt-get update
 echo "Installing BIRD2..."
 ${SUDO} apt-get -y install bird2
-echo "Enabling BIRD2 systemd service"
+echo "Enabling BIRD2 systemd service..."
 ${SUDO} systemctl enable bird
-echo "Starting BIRD2 systemd service"
+echo "Starting BIRD2 systemd service..."
 ${SUDO} systemctl start bird
 echo "BIRD2 installation completed successfully!"
 exit
