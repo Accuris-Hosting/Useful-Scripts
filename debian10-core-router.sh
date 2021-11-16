@@ -22,6 +22,7 @@ cd /tmp
 rm -rf /tmp/go1.17.3.linux-amd64.tar.gz
 source /etc/profile
 echo "Go installation completed successfully!"
+echo "Sleeping for 5 seconds before proceeding"
 sleep 5
 echo "Adding BIRD2 package repository to system..."
 ${SUDO} sh -c 'echo "deb [arch=amd64] http://provo-mirror.opensuse.org/repositories/home:/CZ-NIC:/bird-latest/Debian_10/  ./" > /etc/apt/sources.list.d/bird2.list'
@@ -43,6 +44,7 @@ ${SUDO} systemctl enable bird
 echo "Starting BIRD2 systemd service..."
 ${SUDO} systemctl start bird
 echo "BIRD2 installation completed successfully!"
+echo "Sleeping for 5 seconds before proceeding"
 sleep 5
 echo "Starting bgpq4 install"
 echo "Changing directory to /tmp"
@@ -63,23 +65,13 @@ echo "Deleting temp build directory"
 cd /tmp
 rm -rf /tmp/bgpq4/
 echo "bgpq4 installation completed successfully!"
+echo "Sleeping for 5 seconds before proceeding"
 sleep 5
-echo "Starting pathvector install"
-echo "Changing to home directory"
-cd $HOME/
-echo "Cloning pathvector GitHub repository"
-git clone https://github.com/natesales/pathvector.git
-echo "Changing into the pathvector source directory"
-cd $HOME/pathvector/
-echo "Generating code"
-go generate
-echo "Building pathvector"
-go build
-echo "Copying pathvector executable for systenm-wide use"
-${SUDO} cp $HOME/pathvector/pathvector /usr/local/sbin
-echo "Deleting temp build directory"
-cd $HOME/
-rm -rf $HOME/pathvector
+echo "Starting Pathvector install"
+${SUDO} bash -c "curl https://repo.pathvector.io/pgp.asc > /usr/share/keyrings/pathvector.asc"
+${SUDO} bash -c "echo 'deb [signed-by=/usr/share/keyrings/pathvector.asc] https://repo.pathvector.io/apt/ stable main' > /etc/apt/sources.list.d/pathvector.list"
+${SUDO} apt-get update
+${SUDO} apt-get install -y pathvector
 source /etc/profile
-echo "pathvector installation completed successfully!"
+echo "Pathvector installation completed successfully!"
 exit
