@@ -32,10 +32,12 @@ main() {
                                 OS="$ID"
                                 VERSION="$VERSION_CODENAME"
                                 PACKAGETYPE="apt"
+                                ;;
                         debian)
                                 OS="$ID"
                                 VERSION="$VERSION_CODENAME"
                                 PACKAGETYPE="apt"
+                                ;;
                         centos)
                                 OS="$ID"
                                 VERSION="$VERSION_ID"
