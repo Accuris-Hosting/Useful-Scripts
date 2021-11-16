@@ -41,6 +41,8 @@ echo "BIRD2 installation completed successfully!"
 echo "Sleeping for 5 seconds before proceeding"
 sleep 5
 echo "Starting bgpq4 install"
+echo "Installing prerequisite packages"
+${SUDO} apt-get install -y m4 libtool
 echo "Changing directory to /tmp"
 cd /tmp
 echo "Cloning bgpq4 GitHub repository"
