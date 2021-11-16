@@ -2,6 +2,8 @@
 ---------------------------------------------------------------------------------------------------------
 This repository was created as a source for all scripts developed and/or found useful by Accuris Technologies Ltd and it's subsidiaries.
 
+**DISCLAIMER: IF LOGGED IN AS A NON-ROOT USER, DO NOT RUN THESE SCRIPTS USING THE "SUDO" COMMAND. THESE SCRIPTS WILL AUTOMATICALLY CALL SUDO FOR COMMANDS THAST REQUIRE SUPERUSER PERMISSIONS TO RUN.**
+
 ## Scripts
 ### go-install.sh
 This script will download, extract and install v1.16.5 of the [Go](https://golang.org/) binary onto a Linux system running the AMD64 kernel.
