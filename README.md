@@ -14,10 +14,10 @@ This script will automatically configure the required package repository as well
 ### bgpq4-install.sh
 This script will compile, build and install the [bgpq4](https://github.com/bgp/bgpq4) binary from source.
 
-### pathvector-install.sh
-This script will compile, build and install the [Pathvector](https://pathvector.io) binary from source.
+### debian_ubuntu-pathvector-install.sh
+This script will install the [Pathvector](https://pathvector.io) package from the Pathvector repository on systems running Debian or Ubuntu.
 
-Before running `pathvector-install.sh`, please ensure the following scripts are run in the order shown below:
+Before running `debian_ubuntu-pathvector-install.sh`, please ensure the following scripts are run in the order shown below:
 * `go-install.sh`
 * `debian10-bird2-install.sh` (if Debian 10)
 * `bgpq4-install.sh`
