@@ -21,7 +21,6 @@ echo "Removing tarball"
 cd /tmp
 rm -rf /tmp/go1.17.3.linux-amd64.tar.gz
 source /etc/profile
-${SUDO} source /etc/profile
 echo "Go installation completed successfully!"
 sleep 5
 echo "Adding BIRD2 package repository to system..."
