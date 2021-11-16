@@ -24,6 +24,5 @@ echo "Deleting temp build directory"
 cd $HOME/
 rm -rf $HOME/pathvector
 source /etc/profile
-${SUDO} source /etc/profile
 echo "pathvector installation completed successfully!"
 exit
