@@ -1,6 +1,6 @@
 # Useful Scripts
 ---------------------------------------------------------------------------------------------------------
-This repository was created as a source for all scripts developed and/or found useful by 12128489 Canada Inc and it's subsidiaries.
+This repository was created as a source for all scripts developed and/or found useful by Accuris Technologies Ltd and it's subsidiaries.
 
 ## Scripts
 ### go-install.sh
