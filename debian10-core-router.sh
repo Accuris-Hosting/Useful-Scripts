@@ -38,7 +38,7 @@ ${SUDO} apt-key adv --fetch-keys 'https://download.opensuse.org/repositories/hom
 echo "Updating system package cache..."
 ${SUDO} apt-get update
 echo "Installing BIRD2..."
-${SUDO} apt-get -y install bird2
+${SUDO} apt-get install -y bird2
 echo "Enabling BIRD2 systemd service..."
 ${SUDO} systemctl enable bird
 echo "Starting BIRD2 systemd service..."
@@ -47,6 +47,8 @@ echo "BIRD2 installation completed successfully!"
 echo "Sleeping for 5 seconds before proceeding"
 sleep 5
 echo "Starting bgpq4 install"
+echo "Installing prerequisite packages"
+${SUDO} apt-get install -y m4 libtool
 echo "Changing directory to /tmp"
 cd /tmp
 echo "Cloning bgpq4 GitHub repository"
